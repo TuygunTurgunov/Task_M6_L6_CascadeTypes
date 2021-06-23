@@ -1,0 +1,15 @@
+POST https://localhost:8080/api/client
+Content-Type: application/json
+
+{
+  "fullName": "sds",
+  "passportSer": "AA1212"
+}
+###
+POST http://localhost:8080/api/address
+Content-Type: application/json
+
+{
+  "city": "Tashkent",
+  "street": "Beruniy 12a"
+}

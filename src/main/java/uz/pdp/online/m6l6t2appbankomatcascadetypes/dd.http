@@ -1,0 +1,17 @@
+POST http://localhost:8080/api/client
+Content-Type: application/json
+
+{
+  "fullName": "Murod",
+  "passportSer": "AA002"
+}
+
+###
+DELETE http://localhost:8080/api/client/355feac7-44f3-44af-aca8-79faa98a982d
+###
+GET http://localhost:8080/api/client
+
+
+
+
+
