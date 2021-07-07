@@ -61,8 +61,4 @@ public class CardController {
         ApiResponse apiResponse=cardService.delete(id);
         return ResponseEntity.status(apiResponse.getIsSuccess()?200:409).body(apiResponse);
     }
-
-
-
-
 }

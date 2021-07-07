@@ -6,8 +6,5 @@ import lombok.Data;
 public class TransferDto {
 
     private Integer bankomatId;
-//    private Long login;
-//    private String password;
     private Integer moneyAmount;
-
 }

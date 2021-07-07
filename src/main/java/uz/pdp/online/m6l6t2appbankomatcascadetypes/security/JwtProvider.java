@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Component
 public class JwtProvider {
-    private final long expireTime = 1000 * 60 * 60 * 24 * 18; //1 kun * 7 kun
+    private final long expireTime = 1000L * 60 * 60 * 24 * 30; //1 kun * 7 kun
     private final String secretKey = "MaxfiySozHechKimBilmasin";
 
 
