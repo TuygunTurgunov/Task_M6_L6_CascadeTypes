@@ -24,16 +24,16 @@ import java.util.Optional;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
     @Autowired
-    JwtProvider jwtProvider;
+    private JwtProvider jwtProvider;
 
     @Autowired
-    AuthService authService;
+    private AuthService authService;
 
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,
@@ -73,13 +73,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
                 if (passwordEncoder.matches(cardLoginAndPassword[1], card.getPassword())) {
                     card.setCountChance(0);
-//                    card.setBlocked(false);
-//                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-//
-//                    //Sistemaga shu user kirdi deb set qilindi
-//                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-//
-
                 } else if (card.getCountChance() < 2) {
                     card.setCountChance(card.getCountChance() + 1);
                 } else {
@@ -88,14 +81,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 cardRepository.save(card);
 
             }
-
-
-
-
-
         }
-
-
         //Spring ni ozini filtiri Biz yozgan filtrlaga tushmasa o'zinikiga tushadi
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
@@ -107,5 +93,4 @@ public class JwtFilter extends OncePerRequestFilter {
         return credentials.split(":");
 
     }
-
 }

@@ -25,10 +25,10 @@ import java.util.Properties;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    AuthService authService;
+    private AuthService authService;
 
     @Autowired
-    JwtFilter jwtFilter;
+    private JwtFilter jwtFilter;
 
     //User larni tekshirvommiz uchun kere  //authService implement qilgan UserDetailsService ni
     //loadByUserName() ni ishlatdim AuthService da

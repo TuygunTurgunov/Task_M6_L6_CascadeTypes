@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/bankomat")
 public class BankomatController {
     @Autowired
-    BankomatService bankomatService;
+    private BankomatService bankomatService;
 
     @PostMapping
     public HttpEntity<?>add(@RequestBody BankomatDto bankomatDto){
@@ -47,6 +47,4 @@ public class BankomatController {
         List<Bankomat> allBankomatByBankId = bankomatService.getAllBankomatByBankId(id);
         return ResponseEntity.status(allBankomatByBankId!=null?200:409).body(allBankomatByBankId);
     }
-
-
 }

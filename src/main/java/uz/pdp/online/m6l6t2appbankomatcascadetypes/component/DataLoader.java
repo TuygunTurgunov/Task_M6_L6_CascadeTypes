@@ -22,32 +22,29 @@ import java.util.UUID;
  *          ba'zi  buyruqlarga bog'lab qoyishimiz kerak , bu class ni faqat bir marta o'qishligi uchun
  */
 
-
-
-
 @Component
 public class DataLoader implements CommandLineRunner {
 
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
-    BankRepository bankRepository;
+    private BankRepository bankRepository;
 
     @Autowired
-    BankNotesRepository bankNotesRepository;
+    private BankNotesRepository bankNotesRepository;
 
     @Autowired
-    CardTypeRepository cardTypeRepository;
+    private CardTypeRepository cardTypeRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    AuthService authService;
+    private AuthService authService;
 
 
 
@@ -64,11 +61,6 @@ public class DataLoader implements CommandLineRunner {
     @Value(value = "${spring.jpa.hibernate.ddl-auto}")
     String runDDL;
 
-
-
-    // runDDL=update and   runFirstWithDataSql=true
-            //bo'lganida shu  CommandLineRunner ni override bo'lgan methodi
-                    // ishga tushadi va emailga habar ketadi.
     @Override
     public void run(String... args) throws Exception {
         if(runDDL.equals("create")){

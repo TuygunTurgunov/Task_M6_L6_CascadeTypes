@@ -39,7 +39,4 @@ public class CardDto {
 
     private Integer cardTypeId;
 
-    //blocklash uchun sanoq
-
-
 }

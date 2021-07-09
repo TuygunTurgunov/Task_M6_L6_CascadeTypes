@@ -20,16 +20,16 @@ import java.util.UUID;
 @Service
 public class BankNotesBankomatService {
     @Autowired
-    BankomatRepository bankomatRepository;
+    private BankomatRepository bankomatRepository;
 
     @Autowired
-    BankNotesRepository bankNotesRepository;
+    private BankNotesRepository bankNotesRepository;
 
     @Autowired
-    UserType userType;
+    private UserType userType;
 
     @Autowired
-    BankNotesBankomatRepository bankNotesBankomatRepository;
+    private BankNotesBankomatRepository bankNotesBankomatRepository;
 
     public ApiResponse add(BNBDto bnbDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -92,20 +92,11 @@ public class BankNotesBankomatService {
             return new ApiResponse("bankNotes not found by id", false);
         BankNotes bankNotes = optionalBankNotes.get();
 
-
-
         BankNotesBankomat bankNotesBankomat = optionalBankNotesBankomat.get();
         bankNotesBankomat.setBankomat(bankomat);
         bankNotesBankomat.setBankNotes(bankNotes);
         bankNotesBankomat.setQuantity(bnbDto.getQuantity());
         bankNotesBankomatRepository.save(bankNotesBankomat);
         return new ApiResponse("bank notes in bankomat edited",true);
-
-
-
-
     }
-
-
-
 }

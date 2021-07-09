@@ -21,19 +21,20 @@ import java.util.Optional;
 @Service
 public class TransferOutcomeService {
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
     @Autowired
-    BankomatRepository bankomatRepository;
+    private BankomatRepository bankomatRepository;
     @Autowired
-    BankomatService bankomatService;
+    private BankomatService bankomatService;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    OutHistoryRepository outHistoryRepository;
+    private OutHistoryRepository outHistoryRepository;
     @Autowired
-    MoneyTransferService moneyTransferService;
+    private MoneyTransferService moneyTransferService;
     @Autowired
-    UserType userType;
+    private UserType userType;
+
     public ApiResponse calculate(TransferDto transferDto){
 
 //1  ==> check card
@@ -232,14 +233,5 @@ public class TransferOutcomeService {
         }
         return new ApiResponse("error",false);
     }
-//    public static HashMap<String,Integer> updateBaza(HashMap<String,Integer> baza){
-//        Integer yuz = baza.get("yuz");
-//        Integer ellik = baza.get("ellik");
-//        Integer on = baza.get("on");
-//        Integer besh = baza.get("besh");
-//        Integer ming = baza.get("ming");
-//        Integer all = yuz * 100_000 + ellik * 50_000 + on * 10_000 + besh * 5_000 + ming * 1_000;
-//        baza.put("baza",all);
-//        return baza;
-//    }
+
 }

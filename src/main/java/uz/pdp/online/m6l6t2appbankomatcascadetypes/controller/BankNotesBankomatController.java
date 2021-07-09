@@ -17,7 +17,7 @@ public class BankNotesBankomatController {
 //BNB ==>    BankNotesBankomat
 
     @Autowired
-    BankNotesBankomatService bankNotesBankomatService;
+    private BankNotesBankomatService bankNotesBankomatService;
 
     @PostMapping
     public HttpEntity<?>add(@RequestBody BNBDto bnbDto){
@@ -32,9 +32,5 @@ public class BankNotesBankomatController {
         ApiResponse apiResponse = bankNotesBankomatService.edit(id, bnbDto);
         return ResponseEntity.status(apiResponse.getIsSuccess()?200:409).body(apiResponse);
     }
-
-
-
-
 
 }

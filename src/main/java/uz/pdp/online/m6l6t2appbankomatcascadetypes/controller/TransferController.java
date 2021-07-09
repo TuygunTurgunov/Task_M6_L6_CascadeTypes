@@ -18,11 +18,11 @@ import uz.pdp.online.m6l6t2appbankomatcascadetypes.service.TransferOutcomeServic
 public class TransferController {
 
     @Autowired
-    TransferOutcomeService transferOutcomeService;
+    private TransferOutcomeService transferOutcomeService;
     @Autowired
-    TransferIncomeService transferIncomeService;
+    private TransferIncomeService transferIncomeService;
     @Autowired
-    TransferOutcomeDollarService transferOutcomeDollarService;
+    private TransferOutcomeDollarService transferOutcomeDollarService;
 
 
     @PostMapping("/outcomeMoney")

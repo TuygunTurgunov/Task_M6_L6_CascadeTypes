@@ -19,19 +19,19 @@ import java.util.Optional;
 @Service
 public class BankomatService {
     @Autowired
-    BankomatRepository bankomatRepository;
+    private BankomatRepository bankomatRepository;
     @Autowired
-    CardTypeRepository cardTypeRepository;
+    private CardTypeRepository cardTypeRepository;
     @Autowired
-    BankRepository bankRepository;
+    private BankRepository bankRepository;
     @Autowired
-    AddressRepository addressRepository;
+    private AddressRepository addressRepository;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    UserType userType;
+    private UserType userType;
     @Autowired
-    JavaMailSender javaMailSender;//Mail bilan ishlash ga
+    private JavaMailSender javaMailSender;//Mail bilan ishlash ga
 
 
     public ApiResponse add(BankomatDto bankomatDto) {

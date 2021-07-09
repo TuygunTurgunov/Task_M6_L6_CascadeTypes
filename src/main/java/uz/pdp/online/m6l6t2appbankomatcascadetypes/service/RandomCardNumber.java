@@ -9,7 +9,7 @@ import java.util.Random;
 @Service
 public class RandomCardNumber {
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
 
     public Long getNumber(){
         Random rand = new Random();

@@ -23,19 +23,19 @@ import java.util.Optional;
 @Service
 public class TransferOutcomeDollarService {
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
     @Autowired
-    BankomatRepository bankomatRepository;
+    private BankomatRepository bankomatRepository;
     @Autowired
-    BankomatService bankomatService;
+    private BankomatService bankomatService;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    OutHistoryRepository outHistoryRepository;
+    private OutHistoryRepository outHistoryRepository;
     @Autowired
-    MoneyTransferService moneyTransferService;
+    private MoneyTransferService moneyTransferService;
     @Autowired
-    UserType userType;
+    private UserType userType;
     public ApiResponse calculateDollar(TransferDto transferDto){
 
 //1  ==> check card
@@ -124,8 +124,6 @@ public class TransferOutcomeDollarService {
     public ApiResponse exchangesDollar(HashMap<String,Integer> baza, Integer sum, Bankomat bankomat){
         if (sum<baza.get("min")||sum>baza.get("max"))
             return new ApiResponse("error min value or max value",false);
-//        if (sum%1000!=0)
-//            return new ApiResponse("tanga yo'q",false);
 
         if (baza.get("all")<sum)
             return new ApiResponse("bankomatda siz kiritgan summadan kam miqdorda summa bor",false);

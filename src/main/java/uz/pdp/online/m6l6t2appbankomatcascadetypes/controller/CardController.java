@@ -19,7 +19,7 @@ import java.util.UUID;
 @RequestMapping("/api/card")
 public class CardController {
     @Autowired
-    CardService cardService;
+    private CardService cardService;
 
     @PostMapping
     public HttpEntity<?>add(@RequestBody CardDto cardDto){

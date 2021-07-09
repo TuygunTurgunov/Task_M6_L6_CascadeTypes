@@ -20,29 +20,27 @@ import java.util.*;
 @Service
 public class CardService {
     @Autowired
-    CardRepository cardRepository;
-//    @Autowired
-//    LastCardUniqueNumberRepository lastCardUniqueNumberRepository;
+    private CardRepository cardRepository;
 
     @Autowired
-    BankRepository bankRepository;
+    private BankRepository bankRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    CardTypeRepository cardTypeRepository;
+    private CardTypeRepository cardTypeRepository;
 
     @Autowired
-    RandomCardNumber randomCardNumber;
+    private RandomCardNumber randomCardNumber;
 
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     @Autowired
-    UserType userType;
+    private UserType userType;
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
 
     public ApiResponse add(CardDto cardDto) {

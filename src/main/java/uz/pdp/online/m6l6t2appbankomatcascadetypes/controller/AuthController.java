@@ -17,17 +17,12 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthController {
     @Autowired
-    AuthService authService;
+    private AuthService authService;
 
     @PostMapping("/register")
     public HttpEntity<?> registerUser(@Valid @RequestBody RegisterDto registerDto) {
-
-
-
-
         ApiResponse apiResponse = authService.registerUser(registerDto);
         return ResponseEntity.status(apiResponse.getIsSuccess() ? 201 : 409).body(apiResponse);
-
     }
 
     @GetMapping("/verifyEmail")
@@ -35,7 +30,6 @@ public class AuthController {
         ApiResponse apiResponse = authService.verifyEmail(emailCode, email,loginDto);
         return ResponseEntity.status(apiResponse.getIsSuccess() ? 200 : 409).body(apiResponse);
     }
-
 
     @PostMapping("/login")
     public HttpEntity<?>login(@RequestBody LoginDto loginDto){

@@ -24,9 +24,6 @@ public class RegisterDto {
     @Email
     private String email;
 
-//    @NotNull(message = "role lar ni id si set collection da")
-//    Set<Integer> role;
-
     @NotNull
     Integer roleId;
 

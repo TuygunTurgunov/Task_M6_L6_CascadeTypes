@@ -28,28 +28,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 public class Client {
-    //    @Id
-//    @Type(type = "org.hibernate.type.PostgresUUIDType")
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid",strategy = "org.hibernate.id.UUIDGenerator")
-//    private UUID id;
-//    @Id
-//    @Type(type = "org.hibernate.type.PostgresUUIDType")
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
 
-//    @Id
-//    @GenericGenerator(name = "uuid",strategy = "uuid2")
-//    @GeneratedValue(generator = "uuid")
-//    @Column(name = "id",unique = true,nullable = false)
-//    @Type(type = "pg-uuid")
-//    private UUID id;
-
-    //    @Id
-//    @Type(type = "org.hibernate.type.PostgresUUIDType")
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-//    private UUID id;
     @Id
     @GeneratedValue
     private UUID id;

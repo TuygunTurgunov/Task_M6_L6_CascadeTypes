@@ -34,32 +34,33 @@ import java.util.UUID;
 public class AuthService implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;//parollani encode qilishga
+    private PasswordEncoder passwordEncoder;//parollani encode qilishga
 
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
-    JavaMailSender javaMailSender;//Mail bilan ishlash ga
+    private  JavaMailSender javaMailSender;//Mail bilan ishlash ga
 
     @Autowired
-    AuthenticationManager authenticationManager;//sistemaga login qilinvotganda parol va login larni
+    private AuthenticationManager authenticationManager;//sistemaga login qilinvotganda parol va login larni
     //tekshirib solishtirib ketadi login method da ishlatdim
 
 
     @Autowired
-    JwtProvider jwtProvider;
+    private JwtProvider jwtProvider;
 
     @Autowired
-    CardRepository cardRepository;
+    private  CardRepository cardRepository;
+    @Autowired
+    private  UserType userType;
 
     public ApiResponse registerUser(RegisterDto registerDto) {
 
-        // logika yozamiz.
-        boolean existsByEmail = userRepository.existsByEmail(registerDto.getEmail());
+         boolean existsByEmail = userRepository.existsByEmail(registerDto.getEmail());
         if (existsByEmail)
             return new ApiResponse("Such kind of email already exists", false);
 
@@ -71,48 +72,14 @@ public class AuthService implements UserDetailsService {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
-        boolean isDirector=false;
 
-        for (GrantedAuthority authority : currentUser.getAuthorities()) {
-            if (authority.getAuthority().equals(RoleName.ROLE_DIRECTOR.name())){
-                Optional<Role> optionalRole = roleRepository.findById(registerDto.getRoleId());
-                optionalRole.ifPresent(role -> user.setRoles(Collections.singleton(role)));
-                isDirector=true;
-            }
-        }
-        if (!isDirector)
+        Integer userType = this.userType.getUserType(currentUser);
+        if (userType!=1)
             return new ApiResponse("Faqt director ishchi qo'sholidi",false);
-
-
-//        boolean isManager = true;
-//        for (GrantedAuthority authority : currentUser.getAuthorities()) {
-//
-//            if (authority.getAuthority().equals(RoleName.ROLE_DIRECTOR.name())) {
-//                Optional<Role> optionalRole = roleRepository.findById(registerDto.getRoleId());
-//                if (optionalRole.isPresent())
-//                    user.setRoles(Collections.singleton(optionalRole.get()));
-//                isManager = false;
-//            }
-//            if (authority.getAuthority().equals(RoleName.ROLE_WORKER.name()))
-//                return new ApiResponse("worker can'not add worker", false);
-//
-//        }
-//
-//
-//        if (isManager) {
-//            for (GrantedAuthority authority : currentUser.getAuthorities()) {
-//                if (authority.getAuthority().equals(RoleName.ROLE_HR_MANAGER.name()))
-//                    user.setRoles(Collections.singleton(roleRepository.findByRoleName(RoleName.ROLE_WORKER)));
-//            }
-//        }
-
-
 
 
         //Password ni database ga shifrlab saqlash kere encode qilib
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-
-
 
 
         //Save qilishdan oldin email ga habar boradi linkga bosganida enable = true bo'ladi keyin save qilamiz
@@ -171,9 +138,7 @@ public class AuthService implements UserDetailsService {
 
     }
 
-    //User entity da implement bo'lgan UserDetails da
-    // gi 4 ta metod ham true qaytasrishi kere shunda login qilib beriladi va token qaytaradi.
-    public ApiResponse login(LoginDto loginDto) {
+     public ApiResponse login(LoginDto loginDto) {
         try {
 
             //loadUserByUsername() => shu method ni avtomat o'zi qidiradi
@@ -181,9 +146,7 @@ public class AuthService implements UserDetailsService {
                     loginDto.getUsername(),
                     loginDto.getPassword()));
 
-            //4ta boolean li fieldlarini ham tekshiradi user ni agar 1 tasi false bosa catch ga tushadi
-            // Set toifasidagi role larni yasab olish uchun Authentication interface dan foydalandik
-            //User entity dan role larini ovilduk shu orqali
+
             User user = (User) authentication.getPrincipal();
 
             String token = jwtProvider.generateToken(loginDto.getUsername(), user.getRoles());
@@ -197,23 +160,8 @@ public class AuthService implements UserDetailsService {
 
     }
 
-
-    /**
-     * @param username
-     * @return
-     * @throws UsernameNotFoundException
-     */
-    //1)UserDetailsService interface dan implement bo'lgan method.
-    //    loadUserByUsername  ==> shu metodi orqali userlani qidiradi proektda yoki db
-    //2)User entity UserDetails interface ni implement qilgani uchun User entity toifasida return ni ovotti
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-
-//        Optional<User> optionalUser = userRepository.findByEmail(username);
-//        if (optionalUser.isPresent())
-//            return optionalUser.get();
-//        throw  new UsernameNotFoundException(username+"topilmadi");
 
         return userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException(username + "topilmadi"));
 
@@ -223,6 +171,4 @@ public class AuthService implements UserDetailsService {
         return cardRepository.findByCardNumber(cardNumber).orElseThrow(() -> new UsernameNotFoundException(cardNumber.toString()));
 
     }
-
-
 }

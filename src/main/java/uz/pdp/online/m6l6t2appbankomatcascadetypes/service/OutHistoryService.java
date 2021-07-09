@@ -18,11 +18,11 @@ import java.util.Optional;
 @Service
 public class OutHistoryService {
     @Autowired
-    OutHistoryRepository outHistoryRepository;
+    private OutHistoryRepository outHistoryRepository;
     @Autowired
-    BankomatRepository bankomatRepository;
+    private BankomatRepository bankomatRepository;
     @Autowired
-    UserType userType;
+    private UserType userType;
 
     public List<OutHistory> getOutHistory(HistoryDto historyDto){
 

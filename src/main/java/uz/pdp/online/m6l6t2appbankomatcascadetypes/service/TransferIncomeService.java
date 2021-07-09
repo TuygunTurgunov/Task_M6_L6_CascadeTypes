@@ -17,19 +17,14 @@ import java.util.Optional;
 @Service
 public class TransferIncomeService {
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
     @Autowired
-    BankomatRepository bankomatRepository;
+    private BankomatRepository bankomatRepository;
     @Autowired
-    BankomatService bankomatService;
+    private BankomatService bankomatService;
     @Autowired
-    UserRepository userRepository;
-    @Autowired
-    InHistoryRepository inHistoryRepository;
-    @Autowired
-    MoneyTransferService moneyTransferService;
-    @Autowired
-    UserType userType;
+    private InHistoryRepository inHistoryRepository;
+
     public ApiResponse calculate(TransferDto transferDto){
 
 //1  ==> check card

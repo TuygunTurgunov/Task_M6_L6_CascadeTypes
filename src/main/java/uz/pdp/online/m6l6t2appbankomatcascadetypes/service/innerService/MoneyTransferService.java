@@ -17,16 +17,14 @@ import java.util.Optional;
 @Service
 public class MoneyTransferService {
    @Autowired
-    BankNotesBankomatRepository bankNotesBankomatRepository;
+    private BankNotesBankomatRepository bankNotesBankomatRepository;
 
 
     public HashMap<String,Integer> getBankNotesQuantity(Bankomat bankomat){
 
         List<BankNotesBankomat> allByBankomat = bankNotesBankomatRepository.findAllByBankomat(bankomat);
         HashMap<String,Integer>x=new HashMap<>();
-        String allSummaStr="all";
         int allSummaInteger=0;
-
         for (BankNotesBankomat notesBankomat : allByBankomat) {
             x.put(notesBankomat.getBankNotes().getMoneyName().name(),notesBankomat.getQuantity());
         }

@@ -17,10 +17,10 @@ import java.util.List;
 @RequestMapping("/api/history")
 public class HistoryController {
     @Autowired
-    OutHistoryService outHistoryService;
+    private OutHistoryService outHistoryService;
 
     @Autowired
-    InHistoryService inHistoryService;
+    private InHistoryService inHistoryService;
 
 
     @GetMapping("/out")

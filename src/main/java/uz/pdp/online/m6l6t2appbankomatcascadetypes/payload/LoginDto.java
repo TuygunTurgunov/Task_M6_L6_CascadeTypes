@@ -11,11 +11,9 @@ import javax.validation.constraints.Email;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginDto {
-//    @NotNull
+
     @Email
     private String username;
-
-//    @NotNull
     private String password;
 
 }

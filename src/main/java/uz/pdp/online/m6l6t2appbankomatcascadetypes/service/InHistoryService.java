@@ -19,11 +19,11 @@ import java.util.Optional;
 @Service
 public class InHistoryService {
     @Autowired
-    InHistoryRepository inHistoryRepository;
+    private InHistoryRepository inHistoryRepository;
     @Autowired
-    BankomatRepository bankomatRepository;
+    private BankomatRepository bankomatRepository;
     @Autowired
-    UserType userType;
+    private UserType userType;
 
     public List<InHistory> getInHistory(HistoryDto historyDto){
 

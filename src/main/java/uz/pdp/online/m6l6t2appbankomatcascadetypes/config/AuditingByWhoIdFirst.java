@@ -21,17 +21,13 @@ public class AuditingByWhoIdFirst implements AuditorAware<UUID> {
                 && !authentication.getPrincipal().equals("anonymousUser")
         ) {
             UUID id=null;
-            boolean isUser;
+
 
             try {
                 User user = (User) authentication.getPrincipal();
-//                isUser=true;
                 id=user.getId();
-
             } catch (Exception e) {
-
             }
-
             try {
                  Card card = (Card) authentication.getPrincipal();
                  id=card.getId();
